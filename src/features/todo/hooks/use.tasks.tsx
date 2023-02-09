@@ -1,10 +1,11 @@
 import { ProtoTaskStructure, TaskStructure } from "../models/task";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { TaskApiRepo } from "../services/repository/task.api.repo";
 
-export function useTasks() {
-  const repo = useMemo(() => new TaskApiRepo(), []);
+// Para extraer el type del Custom Hook:
+export type useTaskTypeStructure = ReturnType<typeof useTasks>;
 
+export function useTasks(repo: TaskApiRepo) {
   const initialState: TaskStructure[] = [];
 
   const [tasks, setTasks] = useState(initialState);

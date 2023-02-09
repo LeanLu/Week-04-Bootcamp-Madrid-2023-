@@ -1,11 +1,11 @@
-import { SyntheticEvent } from "react";
-import { ProtoTaskStructure, ProtoTask } from "../../models/task";
+import { SyntheticEvent, useContext } from "react";
+import { AppContext } from "../../../../core/context/app.context";
+import { ProtoTask } from "../../models/task";
 
-type AddProps = {
-  addTask: (task: ProtoTaskStructure) => void;
-};
+export function Add() {
+  // Al hacer esta llamada crea una instancia distinta de la llamada que se hace al mismo hook en Tasks:
+  const { addTask } = useContext(AppContext);
 
-export function Add({ addTask }: AddProps) {
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
